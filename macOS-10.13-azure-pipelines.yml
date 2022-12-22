@@ -32,7 +32,7 @@ jobs:
 
   variables:
     python.version: '$(python.version_major).$(python.version_minor)'
-    azure.vm_image: 'macOS-10.13'
+    azure.vm_image: 'macOS-latest'
     src.python: '$(Agent.BuildDirectory)/s/src/python'
     src.vcpkg: '$(Agent.BuildDirectory)/s/src/vcpkg'
     tests: '$(Agent.BuildDirectory)/s/tests'
