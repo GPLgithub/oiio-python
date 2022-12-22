@@ -28,7 +28,6 @@ jobs:
       macos-py39:
         python.version_major: '3'
         python.version_minor: '9'
-        python.version_patch: '0'
 
   variables:
     python.version: '$(python.version_major).$(python.version_minor)'
