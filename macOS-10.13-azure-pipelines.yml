@@ -141,16 +141,16 @@ jobs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)'
       artifactName: drop-$(python.version)
 
-  # Tests
-  - bash: |
-      cd $(tests)
-      python --version
-      pip list
-      pip install $(Build.ArtifactStagingDirectory)/*.whl
-      pip install pytest
-      pip list
-      pytest --verbose
-    displayName: Run rudimental test(s)
+#  # Tests
+#  - bash: |
+#      cd $(tests)
+#      python --version
+#      pip list
+#      pip install $(Build.ArtifactStagingDirectory)/*.whl
+#      pip install pytest
+#      pip list
+#      pytest --verbose
+#    displayName: Run rudimental test(s)
 
   # Create, edit, or delete a GitHub release
   - task: GitHubRelease@0
