@@ -114,6 +114,7 @@ jobs:
 
   # View files from built and installed oiio
   - bash: |
+      tree -L 6 $(install.vcpkg)
       cd $(install.vcpkg)/installed/x64-osx/lib/python$(python.version)/site-packages
       tree
       pwd
