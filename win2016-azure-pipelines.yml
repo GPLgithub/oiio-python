@@ -15,7 +15,7 @@ jobs:
       windows-py39:
         python.version_major: '3'
         python.version_minor: '9'
-        python.version_patch: '0'
+        python.version_patch: '13'
 
   variables:
     python.version: '$(python.version_major).$(python.version_minor)'
@@ -24,7 +24,7 @@ jobs:
     src.python: '$(Agent.BuildDirectory)/s/src/python'
     src.vcpkg: '$(Agent.BuildDirectory)/s/src/vcpkg'
     tests: '$(Agent.BuildDirectory)/s/tests'
-    install.vcpkg: $(Agent.BuildDirectory)/s/vcpkg
+    install.vcpkg: C:/vcpkg
     oiio.version: '2.0.5'
     pypackage.os_name: 'Microsoft :: Windows'
 
