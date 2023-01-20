@@ -19,10 +19,12 @@ jobs:
 
   variables:
     python.version: '$(python.version_major).$(python.version_minor)'
+    OIIO_PYTHON_VERSION: '$(python.version_major).$(python.version_minor)'
     azure.vm_image: 'vs2017-win2016'
     src.python: '$(Agent.BuildDirectory)/s/src/python'
     src.vcpkg: '$(Agent.BuildDirectory)/s/src/vcpkg'
     tests: '$(Agent.BuildDirectory)/s/tests'
+    install.vcpkg: $(Agent.BuildDirectory)/s/vcpkg
     oiio.version: '2.0.5'
     pypackage.os_name: 'Microsoft :: Windows'
 
@@ -70,9 +72,13 @@ jobs:
 
   # Copy customized port(s) into place
   - powershell: |
-      cp -r -v $(src.vcpkg)/ports/python3-py$(python.version).$(python.version_patch)/* C:/vcpkg/ports/python3
-      cp -r -v $(src.vcpkg)/ports/openimageio-py$(python.version)/* C:/vcpkg/ports/openimageio
-      cp -r -v $(src.vcpkg)/ports/pybind11-py$(python.version)/* C:/vcpkg/ports/pybind11
+      mv $(install.vcpkg)/ports/python3 $(install.vcpkg)/ports/backup_python_current
+      mkdir -p $(install.vcpkg)/ports/python3
+      cp -r -v $(src.vcpkg)/ports/python3-py$(python.version).$(python.version_patch)/* $(install.vcpkg)/ports/python3
+
+#      cp -r -v $(src.vcpkg)/ports/python3-py$(python.version).$(python.version_patch)/* C:/vcpkg/ports/python3
+#      cp -r -v $(src.vcpkg)/ports/openimageio-py$(python.version)/* C:/vcpkg/ports/openimageio
+#      cp -r -v $(src.vcpkg)/ports/pybind11-py$(python.version)/* C:/vcpkg/ports/pybind11
     condition: eq( variables['Agent.OS'], 'Windows_NT' )
     displayName: Override vcpkg port files
 
